@@ -1,8 +1,14 @@
-import sayHello from "./hello"
-import sayGoodbye from "./goodbye"
-import SandwichMaker from "./sandwichMaker"
+import APIManager from "./APIManager"
+import createEmployee from "./createEmployee"
+import printToDOM from "./printToDOM"
 
-sayHello()
-sayGoodbye()
-
-SandwichMaker.placeOrder("rye", "capicola", "provolone")
+APIManager.getEmployees().then(
+    (employees) => {
+        employees.forEach(
+            employee => {
+                const employeeHTML = createEmployee(employee)
+                printToDOM(employeeHTML, ".employeeList")
+            }
+        )
+    }
+)
